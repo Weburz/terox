@@ -9,10 +9,10 @@ export default defineConfig({
         github: "https://github.com/Weburz/repoforge",
       },
       sidebar: [
+        { label: "Introduction", slug: "guides/introduction" },
         {
           label: "Guides",
           items: [
-            { label: "Introducing RepoForge", slug: "guides/introduction" },
             { label: "Developer Guide", slug: "guides/development" },
             { label: "Installation Guide", slug: "guides/installation" },
             { label: "Example Guide", slug: "guides/example" },
