@@ -2,4 +2,8 @@
 title: Development Guidelines
 ---
 
-Lorem Ipsum
+## Development Environment Setup
+
+## Contributing Guidelines
+
+## Documenting the Project

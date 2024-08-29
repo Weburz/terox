@@ -9,7 +9,7 @@ export default defineConfig({
         github: "https://github.com/Weburz/repoforge",
       },
       sidebar: [
-        { label: "Introduction", slug: "guides/introduction" },
+        { label: "Introduction", slug: "introduction" },
         {
           label: "Guides",
           items: [
