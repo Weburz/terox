@@ -12,10 +12,12 @@ source of reference for the tool.
 
 ## Options
 
-- `-V`, `--version`: Prints the version information of the tool.
-- `list`: List all locally available templates.
-- `template`: The name of template to download.
-- `create`: Create a template for future reference.
+| Command    | Description                                                     |
+| ---------- | --------------------------------------------------------------- |
+| `version`  | Prints the version information of the tool.                     |
+| `list`     | Lists all downloaded templates.                                 |
+| `template` | Downloads and initialises a project using a specified template. |
+| `create`   | Creates a template for future project generation.               |
 
 <!-- prettier-ignore-start -->
 :::note
