@@ -9,8 +9,10 @@ import (
 )
 
 var listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List all locally available templates.",
+	Use:     "list",
+	Aliases: []string{"ls", "show"},
+	Short:   "List all locally available templates.",
+	Example: "forge list\nforge ls\nforge show",
 	Run: func(cmd *cobra.Command, args []string) {
 		templates_dir := filepath.Join(xdg.DataHome, "repoforge")
 		templates, err := os.ReadDir(templates_dir)
