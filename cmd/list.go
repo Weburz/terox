@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 
@@ -18,20 +17,24 @@ var listCmd = &cobra.Command{
 
 		// Throw error and exit execution if the data directory is unreadable
 		if err != nil {
-			fmt.Printf("Failed to read %s directory: %v\n", templates_dir, err)
+			rootCmd.PrintErrf(
+				"Failed to read %s directory: %v\n",
+				templates_dir,
+				err,
+			)
 			os.Exit(1)
 		}
 
-		fmt.Printf("Templates directory: %s\n\n", templates_dir)
+		rootCmd.Printf("Templates directory: %s\n\n", templates_dir)
 
 		// Share conditional message to user if no templates were found
 		if len(templates) == 0 {
-			fmt.Printf("Available templates: None\n")
+			rootCmd.Printf("Available templates: None\n")
 		} else {
-			fmt.Printf("Available templates:\n")
+			rootCmd.Printf("Available templates:\n")
 			for _, template := range templates {
 				if template.IsDir() {
-					fmt.Printf("%s\n", template.Name())
+					rootCmd.Printf("%s\n", template.Name())
 				}
 			}
 		}
