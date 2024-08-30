@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"errors"
 	"os"
 	"path/filepath"
 
@@ -13,6 +14,12 @@ var cleanCmd = &cobra.Command{
 	Aliases: []string{"gc", "cleanup"},
 	Short:   "Clean/delete all downloaded templates.",
 	Example: "forge clean\nforge gc\nforge cleanup",
+	Args: func(cmd *cobra.Command, args []string) error {
+		if len(args) > 0 {
+			return errors.New("Command does not accept any arguments")
+		}
+		return nil
+	},
 	Run: func(cmd *cobra.Command, args []string) {
 		templatesDir := filepath.Join(xdg.DataHome, "repoforge")
 		templates, err := os.ReadDir(templatesDir)
