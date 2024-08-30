@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"errors"
 	"os"
 	"path/filepath"
 
@@ -13,6 +14,12 @@ var listCmd = &cobra.Command{
 	Aliases: []string{"ls", "show"},
 	Short:   "List all locally available templates.",
 	Example: "forge list\nforge ls\nforge show",
+	Args: func(cmd *cobra.Command, args []string) error {
+		if len(args) > 0 {
+			return errors.New("Command does not accept any arguments")
+		}
+		return nil
+	},
 	Run: func(cmd *cobra.Command, args []string) {
 		templates_dir := filepath.Join(xdg.DataHome, "repoforge")
 		templates, err := os.ReadDir(templates_dir)
