@@ -13,6 +13,29 @@ tasks:
       the tool and is only useful during development.
     cmd: go run main.go
 
+  install:
+    internal: true
+    desc: Install the dependencies for the project ONLY.
+    sources:
+      - go.mod
+    generates:
+      - go.sum
+    cmds:
+      - go mod download
+      - go mod tidy
+
+  setup:
+    desc: Setup the project for development.
+    summary: |
+      Setup the project for development.
+
+      This command will setup the project for local development. The command will
+      abstract away installation of the dependencies of the project and its
+      documentations as well.
+    cmds:
+      - task: install
+      - task: docs:setup
+
   build:
     desc: Build the binary for the current system architecture.
     summary: |
