@@ -4,7 +4,7 @@ silent: true
 
 tasks:
   default:
-    desc: Run the binary in "dev mode"
+    desc: Run the binary in "dev mode".
     summary: |
       Run the binary for development needs.
 
