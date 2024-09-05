@@ -11,6 +11,7 @@
 # https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
 #
 # Binaries for programs and plugins
+bin
 *.exe
 *.exe~
 *.dll
@@ -208,5 +209,8 @@ tags
 # Ignore all local history of files
 .history
 .ionide
+
+### Taskfile ###
+.task
 
 # End of https://www.toptal.com/developers/gitignore/api/node,astro,go,vim,visualstudiocode
