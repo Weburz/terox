@@ -60,6 +60,17 @@ tasks:
       use it for local reference.
     dir: ./docs
     cmd: pnpm dev
+
+  docs:setup:
+    desc: Install and setup the documentations.
+    summary: |
+      Setup the documentations.
+
+      This command will setup the documentations before development on the project can
+      be started. It will install all necessary dependencies and the prerequisites to
+      document the project.
+    dir: ./docs
+    cmd: pnpm install --frozen-lockfile
     sources:
       - package.json
     generates:
