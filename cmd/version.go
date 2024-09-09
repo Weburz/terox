@@ -1,24 +1,29 @@
 package cmd
 
 import (
-	"fmt"
-	"runtime"
-
 	"github.com/spf13/cobra"
 )
 
-const version = "v0.0.1"
+type Version struct {
+	Version   string
+	Commit    string
+	BuildTime string
+}
+
+var version *Version
 
 var versionCmd = &cobra.Command{
 	Use:   "version",
-	Short: "Print the version information.",
+	Short: "print the version number and exit (also --version)",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Print("RepoForge Build Information\n")
-		fmt.Printf("\nVersion: %s\n", version)
-		fmt.Printf("OS/Arch: %s/%s\n", runtime.GOOS, runtime.GOARCH)
+		cmd.Printf("forge %s\n", version.Version)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(versionCmd)
+}
+
+func SetVersion(v *Version) {
+	version = v
 }
