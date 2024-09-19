@@ -16,7 +16,7 @@ source of reference for the tool.
 | ---------- | --------------------------------------------------------------- |
 | `version`  | Prints the version information of the tool.                     |
 | `list`     | Lists all downloaded templates.                                 |
-| `template` | Downloads and initialises a project using a specified template. |
+| `generate` | Downloads and initialises a project using a specified template. |
 | `create`   | Creates a template for future project generation.               |
 
 <!-- prettier-ignore-start -->
