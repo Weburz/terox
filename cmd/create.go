@@ -90,4 +90,14 @@ func createTemplate(name string, templatePath string) {
 		panic(err)
 	}
 
+	jsonContent := []byte("{}\n")
+
+	// Add some basic necessary contents to the "forge.json" file
+	if err := os.WriteFile(
+		filepath.Join(templatePath, "forge.json"),
+		jsonContent,
+		0644,
+	); err != nil {
+		rootCmd.PrintErrf("Failed to write to \"forge.json\" due to %s", err)
+	}
 }
