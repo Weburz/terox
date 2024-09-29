@@ -10,13 +10,16 @@ importers:
     dependencies:
       '@astrojs/check':
         specifier: ^0.9.3
-        version: 0.9.3(typescript@5.5.4)
+        version: 0.9.3(prettier@3.3.3)(typescript@5.5.4)
       '@astrojs/starlight':
-        specifier: ^0.26.1
-        version: 0.26.1(astro@4.14.6(rollup@4.21.1)(typescript@5.5.4))
+        specifier: ^0.28.2
+        version: 0.28.2(astro@4.14.6(rollup@4.21.1)(typescript@5.5.4))
       astro:
         specifier: ^4.10.2
         version: 4.14.6(rollup@4.21.1)(typescript@5.5.4)
+      prettier:
+        specifier: ^3.3.3
+        version: 3.3.3
       sharp:
         specifier: ^0.32.5
         version: 0.32.6
@@ -70,10 +73,10 @@ packages:
   '@astrojs/sitemap@3.1.6':
     resolution: {integrity: sha512-1Qp2NvAzVImqA6y+LubKi1DVhve/hXXgFvB0szxiipzh7BvtuKe4oJJ9dXSqaubaTkt4nMa6dv6RCCAYeB6xaQ==}
 
-  '@astrojs/starlight@0.26.1':
-    resolution: {integrity: sha512-0qNYWZJ+ZOdSfM7du6fGuwUhyTHtAeRIl0zYe+dF0TxDvcakplO1SYLbGGX6lEVYE3PdBne7dcJww85bXZJIIQ==}
+  '@astrojs/starlight@0.28.2':
+    resolution: {integrity: sha512-Q1/Ujl2EzWX71qwqdt/0KP3wOyX6Rvyzcep/zD3hRCtw/Vi2TReh4Q2wLwz7mnbuYU9H7YvBKYknbkmjC+K/0w==}
     peerDependencies:
-      astro: ^4.8.6
+      astro: ^4.14.0
 
   '@astrojs/telemetry@3.1.0':
     resolution: {integrity: sha512-/ca/+D8MIKEC8/A9cSaPUqQNZm+Es/ZinRv0ZAzvu2ios7POQSsVD+VOj7/hypWNsNM3T7RpfgNq7H2TU1KEHA==}
@@ -160,6 +163,10 @@ packages:
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
+
+  '@babel/runtime@7.25.6':
+    resolution: {integrity: sha512-VBj9MYyDb9tuLq7yzqjgzt6Q+IBQLrGZfdjOekyEirZPHxXWoTSGUTMrpsfi58Up73d13NfYLv8HT9vmznjzhQ==}
+    engines: {node: '>=6.9.0'}
 
   '@babel/template@7.25.0':
     resolution: {integrity: sha512-aOOgh1/5XzKvg1jvVz7AVrx2piJ2XBi227DHmbY6y+bM9H2FlN+IfecYu4Xl0cNiiVejlsCri89LUsbj8vJD9Q==}
@@ -1238,6 +1245,9 @@ packages:
     resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
     engines: {node: '>=16.17.0'}
 
+  i18next@23.15.1:
+    resolution: {integrity: sha512-wB4abZ3uK7EWodYisHl/asf8UYEhrI/vj/8aoSsrj/ZDxj4/UXPOa1KvFt1Fq5hkUHquNqwFlDprmjZ8iySgYA==}
+
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
 
@@ -1764,6 +1774,11 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
+  prettier@3.3.3:
+    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
+    engines: {node: '>=14'}
+    hasBin: true
+
   prismjs@1.29.0:
     resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
     engines: {node: '>=6'}
@@ -1795,6 +1810,9 @@ packages:
   readdirp@3.6.0:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
+
+  regenerator-runtime@0.14.1:
+    resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
 
   rehype-expressive-code@0.35.6:
     resolution: {integrity: sha512-pPdE+pRcRw01kxMOwHQjuRxgwlblZt5+wAc3w2aPGgmcnn57wYjn07iKO7zaznDxYVxMYVvYlnL+R3vWFQS4Gw==}
@@ -2366,9 +2384,9 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@astrojs/check@0.9.3(typescript@5.5.4)':
+  '@astrojs/check@0.9.3(prettier@3.3.3)(typescript@5.5.4)':
     dependencies:
-      '@astrojs/language-server': 2.14.1(typescript@5.5.4)
+      '@astrojs/language-server': 2.14.1(prettier@3.3.3)(typescript@5.5.4)
       chokidar: 3.6.0
       fast-glob: 3.3.2
       kleur: 4.1.5
@@ -2382,7 +2400,7 @@ snapshots:
 
   '@astrojs/internal-helpers@0.4.1': {}
 
-  '@astrojs/language-server@2.14.1(typescript@5.5.4)':
+  '@astrojs/language-server@2.14.1(prettier@3.3.3)(typescript@5.5.4)':
     dependencies:
       '@astrojs/compiler': 2.10.3
       '@astrojs/yaml2ts': 0.2.1
@@ -2397,12 +2415,14 @@ snapshots:
       volar-service-css: 0.0.61(@volar/language-service@2.4.0)
       volar-service-emmet: 0.0.61(@volar/language-service@2.4.0)
       volar-service-html: 0.0.61(@volar/language-service@2.4.0)
-      volar-service-prettier: 0.0.61(@volar/language-service@2.4.0)
+      volar-service-prettier: 0.0.61(@volar/language-service@2.4.0)(prettier@3.3.3)
       volar-service-typescript: 0.0.61(@volar/language-service@2.4.0)
       volar-service-typescript-twoslash-queries: 0.0.61(@volar/language-service@2.4.0)
       volar-service-yaml: 0.0.61(@volar/language-service@2.4.0)
       vscode-html-languageservice: 5.3.1
       vscode-uri: 3.0.8
+    optionalDependencies:
+      prettier: 3.3.3
     transitivePeerDependencies:
       - typescript
 
@@ -2459,7 +2479,7 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 3.23.8
 
-  '@astrojs/starlight@0.26.1(astro@4.14.6(rollup@4.21.1)(typescript@5.5.4))':
+  '@astrojs/starlight@0.28.2(astro@4.14.6(rollup@4.21.1)(typescript@5.5.4))':
     dependencies:
       '@astrojs/mdx': 3.1.5(astro@4.14.6(rollup@4.21.1)(typescript@5.5.4))
       '@astrojs/sitemap': 3.1.6
@@ -2473,6 +2493,7 @@ snapshots:
       hast-util-select: 6.0.2
       hast-util-to-string: 3.0.0
       hastscript: 9.0.0
+      i18next: 23.15.1
       mdast-util-directive: 3.0.0
       mdast-util-to-markdown: 2.1.0
       mdast-util-to-string: 4.0.0
@@ -2611,6 +2632,10 @@ snapshots:
       '@babel/types': 7.25.4
     transitivePeerDependencies:
       - supports-color
+
+  '@babel/runtime@7.25.6':
+    dependencies:
+      regenerator-runtime: 0.14.1
 
   '@babel/template@7.25.0':
     dependencies:
@@ -3813,6 +3838,10 @@ snapshots:
 
   human-signals@5.0.0: {}
 
+  i18next@23.15.1:
+    dependencies:
+      '@babel/runtime': 7.25.6
+
   ieee754@1.2.1: {}
 
   import-meta-resolve@4.1.0: {}
@@ -4592,6 +4621,8 @@ snapshots:
   prettier@2.8.7:
     optional: true
 
+  prettier@3.3.3: {}
+
   prismjs@1.29.0: {}
 
   prompts@2.4.2:
@@ -4626,6 +4657,8 @@ snapshots:
   readdirp@3.6.0:
     dependencies:
       picomatch: 2.3.1
+
+  regenerator-runtime@0.14.1: {}
 
   rehype-expressive-code@0.35.6:
     dependencies:
@@ -5138,11 +5171,12 @@ snapshots:
     optionalDependencies:
       '@volar/language-service': 2.4.0
 
-  volar-service-prettier@0.0.61(@volar/language-service@2.4.0):
+  volar-service-prettier@0.0.61(@volar/language-service@2.4.0)(prettier@3.3.3):
     dependencies:
       vscode-uri: 3.0.8
     optionalDependencies:
       '@volar/language-service': 2.4.0
+      prettier: 3.3.3
 
   volar-service-typescript-twoslash-queries@0.0.61(@volar/language-service@2.4.0):
     dependencies:
