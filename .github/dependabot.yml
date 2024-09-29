@@ -26,3 +26,15 @@ updates:
     open-pull-requests-limit: 3
     reviewers:
       - Jarmos-san
+
+  - package-ecosystem: "npm"
+    directory: "./docs"
+    schedule:
+      interval: "monthly"
+    commit-message:
+      prefix: "chore(docs): "
+    labels:
+      - "dependencies"
+    open-pull-requests-limit: 3
+    reviewers:
+      - Jarmos-san
