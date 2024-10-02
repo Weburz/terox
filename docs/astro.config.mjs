@@ -2,6 +2,8 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 
 export default defineConfig({
+  site: "https://weburz.github.io/repoforge",
+  base: "repoforge",
   integrations: [
     starlight({
       title: "RepoForge",
