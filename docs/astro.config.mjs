@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import starlightLinksValidatorPlugin from "starlight-links-validator";
 
 export default defineConfig({
   site: "https://weburz.github.io/repoforge",
@@ -7,8 +8,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "RepoForge",
-      description:
-        "Scaffold your projects with ease and efficiency through the power of automation!",
+      description: "Scaffold your projects through the power of automation!",
       editLink: {
         baseUrl: "https://github.com/Weburz/repoforge/edit/main/docs",
       },
@@ -38,6 +38,7 @@ export default defineConfig({
           autogenerate: { directory: "reference" },
         },
       ],
+      plugins: [starlightLinksValidatorPlugin()],
     }),
   ],
 });
