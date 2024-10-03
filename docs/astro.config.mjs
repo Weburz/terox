@@ -7,9 +7,22 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "RepoForge",
+      description:
+        "Scaffold your projects with ease and efficiency through the power of automation!",
+      editLink: {
+        baseUrl: "https://github.com/Weburz/repoforge/edit/main/docs",
+      },
       social: {
         github: "https://github.com/Weburz/repoforge",
+        discord: "https://discord.gg/QeYqwyxBhR",
+        email: "mailto:contact@weburz.com",
+        facebook: "https://www.facebook.com/Weburz",
+        instagram: "https://www.instagram.com/weburzit",
+        linkedin: "https://www.linkedin.com/company/weburz",
+        youtube: "https://www.youtube.com/@Weburz",
+        twitter: "https://x.com/weburz",
       },
+      lastUpdated: true,
       sidebar: [
         { label: "Introduction", slug: "introduction" },
         {
