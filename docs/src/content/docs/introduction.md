@@ -2,11 +2,19 @@
 title: Introducing RepoForge
 ---
 
-Scaffold software development projects with ease and efficiency while
-maintaining reproducibility! With RepoForge you no longer have to worry about
-copying boilerplate source code from your previous projects to a new one. Let
-RepoForge handle creating the boilerplate source code for you while you focus on
-the actual implementation of your project idea!
+RepoForge allows its users to use pre-defined templates to build their next
+projects without writing boilerplate code from scratch repeatedly.
+
+Besides, creating boilerplate code for its users to develop projects, it also
+allows room for automation like invoking scripts before/after generating the
+boilerplate.
+
+With RepoForge, you can create templates of your boilerplate code once and allow
+it to reproduce them whenever you want it again in the future for your projects.
+No longer do you have to waste time and effort to setup a fresh new repository
+from scratch and copy boilerplate code/content from one repository to another.
+Let RepoForge reproduce the environment for you while you sip a cup of coffee
+(or tea).
 
 ## Getting Started
 
