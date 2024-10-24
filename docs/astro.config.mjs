@@ -24,18 +24,32 @@ export default defineConfig({
       },
       lastUpdated: true,
       sidebar: [
-        { label: "Introduction", slug: "introduction" },
         {
-          label: "Guides",
+          label: "Introduction",
+          slug: "introduction",
+        },
+        {
+          label: "Usage Guide",
           items: [
-            { label: "Developer Guide", slug: "guides/development" },
-            { label: "Installation Guide", slug: "guides/installation" },
-            { label: "Example Guide", slug: "guides/example" },
+            { label: "Installation Guide", slug: "usage-guide/installation" },
+            {
+              label: "Command-Line Interface (CLI) Reference",
+              slug: "usage-guide/cli-reference",
+            },
           ],
         },
         {
-          label: "Reference",
-          autogenerate: { directory: "reference" },
+          label: "Contribution & Development Guide",
+          items: [
+            {
+              label: "Development Guidelines",
+              slug: "development-guide/development",
+            },
+            {
+              label: "Software Requirements Specifications (SRS)",
+              slug: "development-guide/spec-sheet",
+            },
+          ],
         },
       ],
       plugins: [starlightLinksValidatorPlugin()],
