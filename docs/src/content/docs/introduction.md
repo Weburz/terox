@@ -11,8 +11,8 @@ the actual implementation of your project idea!
 ## Getting Started
 
 You can get started with using RepoForge by following
-[official installation guide](./guides/installation) to download RepoForge to
-your local development environment.
+[official installation guide](/repoforge/guides/installation) to download
+RepoForge to your local development environment.
 
 ## Why Use RepoForge & Not its Alternatives?
 
