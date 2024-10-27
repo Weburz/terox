@@ -2,6 +2,9 @@ package cmd
 
 import (
 	"errors"
+	"fmt"
+	"io"
+	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
@@ -48,6 +51,26 @@ var templateCmd = &cobra.Command{
 		if errors.Is(err, os.ErrNotExist) {
 			rootCmd.Printf("No template named '%s' found locally\n", args[0])
 			rootCmd.Printf("Downloading template to %s\n", templatePath)
+
+			os.MkdirAll(templatePath, os.ModePerm)
+
+			url := fmt.Sprintf(
+				"https://api.github.com/repos/%s/zipball",
+				args[0],
+			)
+
+			resp, err := http.Get(url)
+
+			if err != nil {
+				panic(err)
+			}
+
+			defer resp.Body.Close()
+
+			file, _ := os.Create("template.zip")
+			defer file.Close()
+
+			io.Copy(file, resp.Body)
 		} else {
 			rootCmd.Printf("Scaffolding project from %s\n", templatePath)
 		}
