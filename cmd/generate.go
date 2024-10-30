@@ -52,29 +52,48 @@ var templateCmd = &cobra.Command{
 			rootCmd.Printf("No template named '%s' found locally\n", args[0])
 			rootCmd.Printf("Downloading template to %s\n", templatePath)
 
+			// Create the directory where the contents of the template will be
+			// stored locally
 			os.MkdirAll(templatePath, os.ModePerm)
-
-			url := fmt.Sprintf(
-				"https://api.github.com/repos/%s/zipball",
-				args[0],
-			)
-
-			resp, err := http.Get(url)
-
-			if err != nil {
-				panic(err)
-			}
-
-			defer resp.Body.Close()
-
-			file, _ := os.Create("template.zip")
-			defer file.Close()
-
-			io.Copy(file, resp.Body)
+			downloadTemplate(args[0])
 		} else {
 			rootCmd.Printf("Scaffolding project from %s\n", templatePath)
 		}
 	},
+}
+
+// Download a zipped archive of the repository from GitHub and store it in a
+// temporary directory for extracting its contents
+func downloadTemplate(repo string) {
+	// Create a temporary directory to download the zipball into and remove it
+	// post operation
+	dir, err := os.MkdirTemp("", "repoforge-*")
+	if err != nil {
+		rootCmd.PrintErrf("Failed to download template: %v\n", err)
+	}
+	defer os.RemoveAll(dir)
+
+	// Set the API endpoint to fetch the zipball from
+	url := fmt.Sprintf("https://api.github.com/repos/%s/zipball", repo)
+
+	// Fetch the zipball using a HTTP GET request to the API endpoint above.
+	resp, err := http.Get(url)
+	if err != nil {
+		rootCmd.PrintErrf("Failed to download template: %v\n", err)
+	}
+	defer resp.Body.Close()
+
+	// Create a zipball in the temporary directory created above
+	zipball := filepath.Join(dir, "template.zip")
+	file, err := os.Create(zipball)
+	if err != nil {
+		rootCmd.PrintErrf("Failed to download template: %v\n", err)
+	}
+	defer file.Close()
+
+	// Copy the contents returned from the GET request to the zipball onto the
+	// local filesystem.
+	io.Copy(file, resp.Body)
 }
 
 func init() {
