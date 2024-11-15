@@ -11,7 +11,7 @@ will prove most helpful.
 Development on RepoForge is heavily inspired from existing tools like
 [Create-React-App (CRA)](https://create-react-app.dev),
 [Cookiecutter](https://cookiecutter.readthedocs.io) and the likes. While the
-existing tools has their use cases and they fulfill their roles quite aptly,
+existing tools have their use cases and they fulfill their roles quite aptly,
 RepoForge aims to resolve the following pain points:
 
 1. The need for a cross-platform and distributable binary executable unlike
@@ -23,20 +23,19 @@ RepoForge aims to resolve the following pain points:
    things! We want to utilise these capabilities and allow the users to
    dynamically scaffold their projects according to the preconfigured template.
 
-3. Tools like Cookiecutter while extremely mature, it is not well maintained
+3. Tools like Cookiecutter while extremely mature, are not well maintained
    anymore (see
    [one such discussion](https://github.com/cookiecutter/cookiecutter/issues/1642)
-   among many others) and CRA is only used to scaffold to React.js projects. We
+   among many others) and CRA is only used to scaffold React.js projects. We
    wanted a more universal tool to get a similar job done quickly and
    efficiently.
 
 ## Functionalities of RepoForge
 
-**NOTE**: RepoForge is still an extremely WIP project and is not stable. Hence,
+**NOTE**: RepoForge is still a WIP project in its very initial phase and is not stable. Hence,
 its UI/UX elements are subject to change without prior notice. We request you to
 try out the pre-release versions of RepoForge and provide us with feedback. Any
-feedback, no matter how trivial it is will help us improve the experience in
-using the tool significantly!
+feedback, no matter how trivial will help us improve the experience of the tool significantly!
 
 That said, RepoForge provides the following core functionalities:
 
@@ -51,7 +50,7 @@ That said, RepoForge provides the following core functionalities:
    tinkering will still be required from the user's end!
 
 3. Provide the necessary utilities to manage and maintain all the locally
-   available templates like keeping them updated, listing local templates,
+   available templates, like keeping them updated, listing local templates,
    deleting them when necessary and such.
 
 ## Contribution and Development Guide
