@@ -18,8 +18,8 @@ Let RepoForge reproduce the environment for you while you sip a cup of coffee
 
 ## Getting Started
 
-You can get started with using RepoForge by following
-[official installation guide](/repoforge/guides/installation) to download
+You can get started with using RepoForge by following the
+[official installation guide](/repoforge/usage-guide/installation) to download
 RepoForge to your local development environment.
 
 ## Why Use RepoForge & Not its Alternatives?
