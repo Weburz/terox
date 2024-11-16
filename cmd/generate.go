@@ -34,6 +34,8 @@ var templateCmd = &cobra.Command{
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		// Create a variable representation of the path to the template
+		// TODO: Refactor the logic to create the template directory and if an
+		// error was thrown then exit execution.
 		templatePath, _ := filepath.Abs(
 			filepath.Join(
 				xdg.DataHome,
@@ -71,6 +73,11 @@ var templateCmd = &cobra.Command{
 			rootCmd.Printf("Scaffolding project from %s\n", templatePath)
 		}
 	},
+}
+
+// TODO: Refactor the function to create the template dir (or throw) an error
+func createTemplateDir() {
+	return
 }
 
 // Download a zipped archive of the repository from GitHub and store it in a
