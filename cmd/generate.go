@@ -55,7 +55,18 @@ var templateCmd = &cobra.Command{
 			// Create the directory where the contents of the template will be
 			// stored locally
 			os.MkdirAll(templatePath, os.ModePerm)
-			downloadTemplate(args[0])
+
+			// Create a temporary file for the zipball contents
+			tempfile, err := os.CreateTemp("", "repoforge-*.zip")
+			if err != nil {
+				rootCmd.PrintErrf("Failed to create temp file: %v\n", err)
+			}
+			defer os.Remove(tempfile.Name())
+
+			// Download the zipball built in the previous command above
+			if err := downloadTemplate(args[0], tempfile.Name()); err != nil {
+				rootCmd.PrintErrf("Failed to download zipball: %v\n", err)
+			}
 		} else {
 			rootCmd.Printf("Scaffolding project from %s\n", templatePath)
 		}
@@ -64,36 +75,35 @@ var templateCmd = &cobra.Command{
 
 // Download a zipped archive of the repository from GitHub and store it in a
 // temporary directory for extracting its contents
-func downloadTemplate(repo string) {
-	// Create a temporary directory to download the zipball into and remove it
-	// post operation
-	dir, err := os.MkdirTemp("", "repoforge-*")
-	if err != nil {
-		rootCmd.PrintErrf("Failed to download template: %v\n", err)
-	}
-	defer os.RemoveAll(dir)
-
+func downloadTemplate(repo, filepath string) error {
 	// Set the API endpoint to fetch the zipball from
 	url := fmt.Sprintf("https://api.github.com/repos/%s/zipball", repo)
 
 	// Fetch the zipball using a HTTP GET request to the API endpoint above.
 	resp, err := http.Get(url)
 	if err != nil {
-		rootCmd.PrintErrf("Failed to download template: %v\n", err)
+		return fmt.Errorf("Failed to download template: %w\n", err)
 	}
 	defer resp.Body.Close()
 
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("Bad server response: %d\n", resp.StatusCode)
+	}
+
 	// Create a zipball in the temporary directory created above
-	zipball := filepath.Join(dir, "template.zip")
-	file, err := os.Create(zipball)
+	file, err := os.Create(filepath)
 	if err != nil {
-		rootCmd.PrintErrf("Failed to download template: %v\n", err)
+		return fmt.Errorf("Failed to create zipball: %w\n", err)
 	}
 	defer file.Close()
 
 	// Copy the contents returned from the GET request to the zipball onto the
 	// local filesystem.
-	io.Copy(file, resp.Body)
+	_, err = io.Copy(file, resp.Body)
+
+	// Return an error if the GET request from GitHub failed to be converted
+	// into a zipball
+	return err
 }
 
 func init() {
