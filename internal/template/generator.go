@@ -2,6 +2,7 @@ package template
 
 import (
 	"fmt"
+	"os"
 	"path/filepath"
 	"strings"
 
@@ -42,6 +43,23 @@ func NewTemplateGenerator(repo string) (*TemplateGenerator, error) {
 }
 
 func (tg *TemplateGenerator) Scaffold() error {
-	// TODO: Add the scaffolding logic here
+	// Check if the template already exists?
+	_, err := os.Stat(tg.TemplatePath)
+
+	// If the template does not already exist locally, then download it
+	if os.IsNotExist(err) {
+		fmt.Printf(
+			"Template path does not exist...downloading it at: %s\n",
+			tg.TemplatePath,
+		)
+		// TODO: Implementing the downloading logic
+		return nil
+	} else if err != nil {
+		return fmt.Errorf("Error checking template path: %w", err)
+	}
+
+	// If the template is found locally, scaffold a project from it
+	fmt.Printf("Template found locally at: %s\n", tg.TemplatePath)
+
 	return nil
 }
