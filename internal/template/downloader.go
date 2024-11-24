@@ -7,9 +7,13 @@ import (
 	"os"
 )
 
-func DownloadTemplate(repo, filepath string) (string, error) {
+func DownloadTemplate(owner, repo string) (string, error) {
 	// Create an URL string to fetch the HTTP response from
-	url := fmt.Sprintf("https://api.github.com/repos/%s/zipball", repo)
+	url := fmt.Sprintf(
+		"https://api.github.com/repos/%s/%s/zipball",
+		owner,
+		repo,
+	)
 
 	// Get the HTTP response from the URL
 	resp, err := http.Get(url)

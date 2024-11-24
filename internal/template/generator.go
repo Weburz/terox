@@ -36,8 +36,8 @@ func NewTemplateGenerator(repo string) (*TemplateGenerator, error) {
 	}
 
 	return &TemplateGenerator{
-		Repo:         parts[0],
-		Owner:        parts[1],
+		Owner:        parts[0],
+		Repo:         parts[1],
 		TemplatePath: templatePath,
 	}, nil
 }
@@ -52,7 +52,14 @@ func (tg *TemplateGenerator) Scaffold() error {
 			"Template path does not exist...downloading it at: %s\n",
 			tg.TemplatePath,
 		)
-		// TODO: Implementing the downloading logic
+
+		// TODO: Use the returned filepath returned to extract its contents
+		_, err := DownloadTemplate(tg.Owner, tg.Repo)
+
+		if err != nil {
+			return err
+		}
+
 		return nil
 	} else if err != nil {
 		return fmt.Errorf("Error checking template path: %w", err)
