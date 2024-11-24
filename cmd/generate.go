@@ -1,3 +1,11 @@
+/**
+ * Package cmd - The "cmd" package contains the logic to handle the various
+ * commands of the CLI application.
+ *
+ * The "generate" file in particular, contained in the "cmd" package handles
+ * the logic to download (if needed) and scaffold a project from a pre-existing
+ * template.
+ */
 package cmd
 
 import (
@@ -18,6 +26,7 @@ storage environments will be supported in a future version.
 
 var generateCmdExample = "forge generate \"Weburz/nuxt-base\""
 
+// Handle the logic for the "generate" command
 var templateCmd = &cobra.Command{
 	Use:     "generate",
 	Short:   generateCmdShortUsage,
@@ -42,6 +51,7 @@ var templateCmd = &cobra.Command{
 	},
 }
 
+// Register the logic for the "generate" command to the root CLI application
 func init() {
 	rootCmd.AddCommand(templateCmd)
 }

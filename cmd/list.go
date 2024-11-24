@@ -1,3 +1,10 @@
+/**
+ * Package cmd - The "cmd" package contains the logic to handle various
+ * commands passed to the CLI tool.
+ *
+ * The "list" file in particular contains the logic to list all locally
+ * available template(s) on disk.
+ */
 package cmd
 
 import (
@@ -8,6 +15,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// Logic to handle the "list" command
 var listCmd = &cobra.Command{
 	Use:     "list",
 	Aliases: []string{"ls", "show"},
@@ -19,10 +27,20 @@ var listCmd = &cobra.Command{
 	},
 }
 
+// Register the logic above with the CLI application
 func init() {
 	rootCmd.AddCommand(listCmd)
 }
 
+/**
+ * listTemplates - List all available templates on disk.
+ *
+ * Parameters:
+ * None
+ *
+ * Returns:
+ * None
+ */
 func listTemplates() {
 	templates_dir := filepath.Join(xdg.DataHome, "repoforge")
 	templates, err := os.ReadDir(templates_dir)

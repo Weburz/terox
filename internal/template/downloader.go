@@ -1,3 +1,13 @@
+/**
+ * Package template - The "template" package contains the logic to
+ * download/scaffold the project from a pre-defined template.
+ *
+ * This file in particular which is part of the "template" package is
+ * responsible for downloading the template from GitHub.
+ *
+ * TODO: A future update will allow the downloading logic to also fetch
+ * templates from locations other than GitHub.
+ */
 package template
 
 import (
@@ -7,6 +17,17 @@ import (
 	"os"
 )
 
+/**
+ * DownloadTemplate - Download a template from a GitHub repository.
+ *
+ * Parameters:
+ * owner string: The user/organization who owns the template (to be downloaded).
+ * repo string: The template's repository (on GitHub).
+ *
+ * Returns:
+ * Returns the filepath to the temporary file where the zipball is downloaded
+ * to or raise an error if there exists one.
+ */
 func DownloadTemplate(owner, repo string) (string, error) {
 	// Create an URL string to fetch the HTTP response from
 	url := fmt.Sprintf(

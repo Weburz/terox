@@ -1,3 +1,9 @@
+/**
+ * Package cmd - The "cmd" package contains the CLI commands for the tool.
+ *
+ * The "clean" file in particular which is part of the "cmd" package contains
+ * the logic to clean up downloaded template(s) on disk.
+ */
 package cmd
 
 import (
@@ -8,6 +14,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// Command to handle the "clean" command of the CLI tool
 var cleanCmd = &cobra.Command{
 	Use:     "clean",
 	Aliases: []string{"gc", "cleanup"},
@@ -19,10 +26,20 @@ var cleanCmd = &cobra.Command{
 	},
 }
 
+// Register the command to the CLI tool
 func init() {
 	rootCmd.AddCommand(cleanCmd)
 }
 
+/**
+ * cleanTemplates - Cleanup the template(s) from disk.
+ *
+ * Parameters:
+ * None
+ *
+ * Returns:
+ * None
+ */
 func cleanTemplates() {
 	templatesDir := filepath.Join(xdg.DataHome, "repoforge")
 	templates, err := os.ReadDir(templatesDir)

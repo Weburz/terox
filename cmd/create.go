@@ -1,3 +1,11 @@
+/**
+ * Package cmd - The "cmd" package consists the logic to handle the commands
+ * passed to the CLI tool.
+ *
+ * The "create" file of the "cmd" package in particular is responsible for
+ * creating a fresh new template for future use (as in scaffolding projects
+ * from it).
+ */
 package cmd
 
 import (
@@ -23,6 +31,7 @@ flag.
 
 var example = "forge create \"simple-website\" --path=\".\""
 
+// Logic to handle the "create" command for the CLI tool.
 var createCmd = &cobra.Command{
 	Use:     "create",
 	Short:   shortUsage,
@@ -47,6 +56,9 @@ var createCmd = &cobra.Command{
 	},
 }
 
+// Register the "create" command for the CLI tool and also add a flag which
+// accepts a filepath to create the template at (defaults to the current working
+// directory).
 func init() {
 	// Fetch the current working directory
 	cwd, _ := os.Getwd()
@@ -66,6 +78,18 @@ func init() {
 	rootCmd.AddCommand(createCmd)
 }
 
+/**
+ * createTemplate - Create a template (with a give name) and to a specified
+ *     path.
+ *
+ * Parameters:
+ * name string: The name to assign to the template.
+ * templatePath: The path to create (and store) the template files at. Defaults
+ *     to the current working directory.
+ *
+ * Returns:
+ * None
+ */
 func createTemplate(name string, templatePath string) {
 	rootCmd.Printf("Creating the template \"%s\" at %s\n", name, templatePath)
 
