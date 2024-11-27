@@ -1,5 +1,5 @@
 ---
-title: Installing RepoForge
+title: Installing Terox
 ---
 
 ## Downloading Pre-Build Binaries

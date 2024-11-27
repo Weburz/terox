@@ -3,7 +3,7 @@ title: Software Requirements Specifications (SRS)
 ---
 
 This section of the documentations contains the "Software Requirements
-Specifications (SRS)" for RepoForge. All feature enhancements and related
+Specifications (SRS)" for Terox. All feature enhancements and related
 development on the project will be based on the criterias listed here on this
 document. Any other feature request or behaviour of the tool which can be
 considered out-of-scope of this document will not be worked upon. In case, a
@@ -13,15 +13,15 @@ functionality can start taking shape.
 
 ### Purpose
 
-RepoForge is a Command-Line Interface tool for managing software development
+Terox is a Command-Line Interface tool for managing software development
 templates. The intention of developing the tool is to make the first step of the
-Software Development Lifecycle (SDLC) easy and streamlined. RepoForge will
-attempt to achieve that goal by providing its users with an ability to download
+Software Development Lifecycle (SDLC) easy and streamlined. Terox will attempt
+to achieve that goal by providing its users with an ability to download
 predefined "_project templates_" and setting it up for software development!
 
 ### Scope
 
-RepoForge takes inspiration from existing tools like
+Terox takes inspiration from existing tools like
 [Cookiecutter](https://cookiecutter.readthedocs.io),
 [Create React App (CRA)](https://create-react-app.dev) and such but does not
 intend to replace them in any manner or ways. Although it does attempt to
@@ -31,23 +31,23 @@ provide a better UI/UX to its users through the following offerings:
 2. Streamlined and intuitive CLI commands.
 3. General-purpose usage and application.
 
-If RepoForge is missing a functionality or two from your favourite project
-template generator, then please
-[open an issue/discussion thread](https://github.com/Weburz/repoforge/issues/new)
+If Terox is missing a functionality or two from your favourite project template
+generator, then please
+[open an issue/discussion thread](https://github.com/Weburz/terox/issues/new)
 stating the requirements and we will look into it promptly.
 
 ### References
 
 The following resources and reference materials will be useful while developing
-(or even using) RepoForget;
+(or even using) Terox;
 
-1. The [Cobra](https://cobra.dev) CLI framework used to develop RepoForge.
+1. The [Cobra](https://cobra.dev) CLI framework used to develop Terox.
 2. A detailed guideline on writing intuitive and useful CLI applications -
    [Command Line Interface Guidelines](https://clig.dev)
 
 ### Summary
 
-RepoForge is a CLI tool for managing software development templates, designed to
+Terox is a CLI tool for managing software development templates, designed to
 simplify the initial stage of the Software Development Lifecycle. Its main
 features include:
 
@@ -57,32 +57,32 @@ features include:
 4. Streamlined CLI commands
 5. General-purpose usage
 
-Inspired by tools like Cookiecutter and Create React App (CRA), RepoForge aims
-to enhance user experience without replacing existing solutions.
+Inspired by tools like Cookiecutter and Create React App (CRA), Terox aims to
+enhance user experience without replacing existing solutions.
 
 ## Overall Description
 
 ### Product Functions
 
-RepoForge is a cross-platform executable binary access on all major platforms,
+Terox is a cross-platform executable binary access on all major platforms,
 namely - Windows, MacOS and Linux. Its primary functionality will involve
 fetching project template files from the Internet and downloading them locally
 to the user's system. The template files can be stored on remote locations like
 GitHub repositories or CDNs hosting the template files in a zipped file.
-Additionally, RepoForge's behaviour is configurable by the user through use of
+Additionally, Terox's behaviour is configurable by the user through use of
 configuration files.
 
 ### User Documentation
 
 The official documentations containing all necessary details about the software
 in general is accessible on the site -
-[tech.weburz.com/repoforge](https://tech.weburz.com/repoforge). Locally
-accessible documentations should also be accessible to the users through
-manpages and help commands.
+[tech.weburz.com/terox](https://tech.weburz.com/terox). Locally accessible
+documentations should also be accessible to the users through manpages and help
+commands.
 
 ## Functional Requirements
 
-Uses of RepoForge should be able to perform the following tasks while using the
+Uses of Terox should be able to perform the following tasks while using the
 tool:
 
 1. Download and initialise a project based on the content of the downloaded
