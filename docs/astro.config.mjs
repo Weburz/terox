@@ -2,17 +2,17 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 
 export default defineConfig({
-  site: "https://weburz.github.io/repoforge",
-  base: "repoforge",
+  site: "https://weburz.github.io/terox",
+  base: "terox",
   integrations: [
     starlight({
-      title: "RepoForge",
+      title: "Terox",
       description: "Scaffold your projects through the power of automation!",
       editLink: {
-        baseUrl: "https://github.com/Weburz/repoforge/edit/main/docs",
+        baseUrl: "https://github.com/Weburz/terox/edit/main/docs",
       },
       social: {
-        github: "https://github.com/Weburz/repoforge",
+        github: "https://github.com/Weburz/terox",
         discord: "https://discord.gg/QeYqwyxBhR",
         email: "mailto:contact@weburz.com",
         facebook: "https://www.facebook.com/Weburz",
