@@ -20,7 +20,7 @@ var listCmd = &cobra.Command{
 	Use:     "list",
 	Aliases: []string{"ls", "show"},
 	Short:   "List all locally available templates.",
-	Example: "forge list\nforge ls\nforge show",
+	Example: "terox list\nterox ls\nterox show",
 	Args:    cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		listTemplates()
@@ -42,7 +42,7 @@ func init() {
  * None
  */
 func listTemplates() {
-	templates_dir := filepath.Join(xdg.DataHome, "repoforge")
+	templates_dir := filepath.Join(xdg.DataHome, "terox")
 	templates, err := os.ReadDir(templates_dir)
 
 	// Throw error and exit execution if the data directory is unreadable

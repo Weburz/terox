@@ -36,7 +36,7 @@ type TemplateGenerator struct {
  *     "TemplateGenerator" struct.
  *
  * Parameters:
- * repo string // The repository name in the form: "Weburz/repoforge".
+ * repo string // The repository name in the form: "Weburz/terox".
  *
  * Returns:
  * Returns an instance of the "TemplateGenerator" struct.
@@ -54,7 +54,7 @@ func NewTemplateGenerator(repo string) (*TemplateGenerator, error) {
 
 	// Create a filepath according to the XDG Base Directory specification
 	templatePath, err := filepath.Abs(
-		filepath.Join(xdg.DataHome, "repoforge", parts[0], parts[1]),
+		filepath.Join(xdg.DataHome, "terox", parts[0], parts[1]),
 	)
 
 	if err != nil {

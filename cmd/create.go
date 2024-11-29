@@ -29,7 +29,7 @@ working directory but it is possible to configure it by passing the "--location"
 flag.
 `
 
-var example = "forge create \"simple-website\" --path=\".\""
+var example = "terox create \"simple-website\" --path=\".\""
 
 // Logic to handle the "create" command for the CLI tool.
 var createCmd = &cobra.Command{
@@ -105,10 +105,10 @@ func createTemplate(name string, templatePath string) {
 	// Create the JSON "data" file to fetch some local information about the
 	// template from
 	if _, err := os.Create(
-		filepath.Join(templatePath, "forge.json"),
+		filepath.Join(templatePath, "terox.json"),
 	); err != nil {
 		rootCmd.PrintErrf(
-			"Failed to write the forge.json file to %s\n",
+			"Failed to write the terox.json file to %s\n",
 			templatePath,
 		)
 		panic(err)
@@ -116,12 +116,12 @@ func createTemplate(name string, templatePath string) {
 
 	jsonContent := []byte("{}\n")
 
-	// Add some basic necessary contents to the "forge.json" file
+	// Add some basic necessary contents to the "terox.json" file
 	if err := os.WriteFile(
-		filepath.Join(templatePath, "forge.json"),
+		filepath.Join(templatePath, "terox.json"),
 		jsonContent,
 		0644,
 	); err != nil {
-		rootCmd.PrintErrf("Failed to write to \"forge.json\" due to %s", err)
+		rootCmd.PrintErrf("Failed to write to \"terox.json\" due to %s", err)
 	}
 }

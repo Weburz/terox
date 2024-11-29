@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/Weburz/repoforge/cmd"
+	"github.com/Weburz/terox/cmd"
 )
 
 func main() {

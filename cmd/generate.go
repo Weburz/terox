@@ -11,7 +11,7 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/Weburz/repoforge/internal/template"
+	"github.com/Weburz/terox/internal/template"
 )
 
 var generateCmdShortUsage = "Scaffold a project from a template"
@@ -24,7 +24,7 @@ in a remote location (like a GitHub/GitLab repository). Support for other remote
 storage environments will be supported in a future version.
 `
 
-var generateCmdExample = "forge generate \"Weburz/nuxt-base\""
+var generateCmdExample = "terox generate \"Weburz/nuxt-base\""
 
 // Handle the logic for the "generate" command
 var templateCmd = &cobra.Command{

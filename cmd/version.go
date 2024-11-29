@@ -16,7 +16,7 @@ var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "print the version number and exit",
 	Run: func(cmd *cobra.Command, args []string) {
-		cmd.Printf("RepoForge %s\n", "v0.0.1-alpha")
+		cmd.Printf("Terox %s\n", "v0.0.1-alpha")
 	},
 }
 

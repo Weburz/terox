@@ -19,7 +19,7 @@ var cleanCmd = &cobra.Command{
 	Use:     "clean",
 	Aliases: []string{"gc", "cleanup"},
 	Short:   "Clean/delete all downloaded templates.",
-	Example: "forge clean\nforge gc\nforge cleanup",
+	Example: "terox clean\nterox gc\nterox cleanup",
 	Args:    cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
 		cleanTemplates()
@@ -41,7 +41,7 @@ func init() {
  * None
  */
 func cleanTemplates() {
-	templatesDir := filepath.Join(xdg.DataHome, "repoforge")
+	templatesDir := filepath.Join(xdg.DataHome, "terox")
 	templates, err := os.ReadDir(templatesDir)
 
 	// Throw error and exit execution loop if no templates were found

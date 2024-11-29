@@ -1,4 +1,4 @@
-module github.com/Weburz/repoforge
+module github.com/Weburz/terox
 
 go 1.23.0
 

@@ -16,7 +16,7 @@ import (
 // Core logic to handle the CLI application itself (known as "root" throughout
 // the project's source code).
 var rootCmd = &cobra.Command{
-	Use:   "forge",
+	Use:   "terox",
 	Short: "A project generator built in Golang!",
 }
 
