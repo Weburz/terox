@@ -44,11 +44,26 @@ tasks:
       This command will compile the source code and build the binary for the current
       system architecture. Do note, it will not build the binary for the target
       architecture unless specified.
-    cmd: go build -o ./bin/forge
+    vars:
+      VERSION:
+        sh: "git describe --tags --always --dirty"
+      GIT_VERSION:
+        sh: "git --version | awk '{print $3}'"
+      GIT_COMMIT:
+        sh: "git rev-parse --short HEAD"
+      BUILD_DATE:
+        sh: "date -u '+%Y-%m-%d'"
+    cmd: |
+      go build -ldflags "\
+      -X github.com/Weburz/terox/internal/version.version={{.VERSION}} \
+      -X github.com/Weburz/terox/internal/version.gitVersion={{.GIT_VERSION}} \
+      -X github.com/Weburz/terox/internal/version.gitCommit={{.GIT_COMMIT}} \
+      -X github.com/Weburz/terox/internal/version.buildDate={{.BUILD_DATE}}" \
+      -o ./bin/terox
     sources:
       - "*.go"
     generates:
-      - ./bin/forge*
+      - ./bin/terox
 
   docs:
     desc: Run the dev server for the docs.
