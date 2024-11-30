@@ -8,15 +8,32 @@
 package cmd
 
 import (
+	"github.com/Weburz/terox/internal/version"
+
 	"github.com/spf13/cobra"
 )
+
+var shortUsageHelp = "Print the version information"
+var LongUsageHelp = `Prints the detailed version information of the application,
+including version, commit hash, build date, and Go version.`
 
 // Handle the logic for the "version" command
 var versionCmd = &cobra.Command{
 	Use:   "version",
-	Short: "print the version number and exit",
+	Short: shortUsageHelp,
+	Long:  LongUsageHelp,
 	Run: func(cmd *cobra.Command, args []string) {
-		cmd.Printf("Terox %s\n", "v0.0.1-alpha")
+		// Fetch the version information of the tool
+		version := version.Get()
+
+		rootCmd.Println("### Terox Build Information ###")
+		rootCmd.Printf("Version: \t%s\n", version.Version)
+		rootCmd.Printf("Git Version: \t%s\n", version.GitVersion)
+		rootCmd.Printf("Git Commit: \t%s\n", version.GitCommit)
+		rootCmd.Printf("Build Date: \t%s\n", version.BuildDate)
+		rootCmd.Printf("Go Version: \t%s\n", version.GoVersion)
+		rootCmd.Printf("Compiler: \t%s\n", version.Compiler)
+		rootCmd.Printf("Platform: \t%s\n", version.Platform)
 	},
 }
 
