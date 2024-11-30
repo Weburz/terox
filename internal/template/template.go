@@ -1,7 +1,9 @@
 package template
 
 import (
+	"archive/zip"
 	"fmt"
+	"io"
 	"os"
 	"path/filepath"
 
@@ -89,6 +91,67 @@ func Clean() error {
 			}
 		}
 	}
+
+	return nil
+}
+
+/**
+ * Extract: Extract a template's zipball to a specified destination.
+ *
+ * Parameters:
+ *   zipfile: (string) The filepath to the downloaded zipfile.
+ *   dest: (string) The destination path to extract the zipped contents to.
+ *
+ * Returns:
+ *   An error message (if any).
+ */
+func Extract(zipfile, templateDest string) error {
+	// Set the destination to extract the zipfile contents to
+	// Should default to ~/.local/share/terox
+	dest := filepath.Join(xdg.DataHome, "terox", templateDest)
+
+	// Read the zipfile and close it when the function completes execution
+	r, err := zip.OpenReader(zipfile)
+	if err != nil {
+		return fmt.Errorf("Failed to open zip file: %w", err)
+	}
+	defer r.Close()
+
+	// Ensure the destination directory exists
+	if err := os.MkdirAll(dest, os.ModePerm); err != nil {
+		return fmt.Errorf("Failed to create destination directory: %w", err)
+	}
+
+	// Iterate through the contents of the zipfile
+	for _, f := range r.File {
+		filePath := filepath.Join(dest, f.Name)
+
+		if f.FileInfo().IsDir() {
+			if err := os.MkdirAll(filePath, f.Mode()); err != nil {
+				return fmt.Errorf("Failed to create directory: %w", err)
+			}
+			continue
+		}
+
+		srcFile, err := f.Open()
+		if err != nil {
+			return fmt.Errorf("Failed to open file in archive: %w", err)
+		}
+		defer srcFile.Close()
+
+		destFile, err := os.Create(dest)
+		if err != nil {
+			return fmt.Errorf("Failed to create file: %w", err)
+		}
+		defer destFile.Close()
+
+		if _, err := io.Copy(destFile, srcFile); err != nil {
+			return fmt.Errorf("Failed to copy file contents: %w", err)
+		}
+	}
+
+	// TODO: Implement functionality to remove the downloaded zipfile if its
+	// extraction was a success
 
 	return nil
 }
