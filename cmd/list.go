@@ -8,65 +8,39 @@
 package cmd
 
 import (
-	"os"
-	"path/filepath"
-
-	"github.com/adrg/xdg"
 	"github.com/spf13/cobra"
+
+	"github.com/Weburz/terox/internal/template"
 )
+
+var listShortUsage = "List all locally available templates."
+var listLongUsage = `
+List all the locally available templates.
+
+This command will list all the available templates on your local system. The
+default directory, Terox will check of available templates is at
+"${XDG_DATA_HOME}/terox" wherein XDG_DATA_HOME is usually set to
+$HOME/.local/share.
+`
+var listExample = "terox list\nterox ls\nterox show"
 
 // Logic to handle the "list" command
 var listCmd = &cobra.Command{
 	Use:     "list",
 	Aliases: []string{"ls", "show"},
-	Short:   "List all locally available templates.",
-	Example: "terox list\nterox ls\nterox show",
+	Short:   shortUsage,
+	Example: listExample,
+	Long:    listLongUsage,
 	Args:    cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		listTemplates()
+		// List all the locally available templates or throw an error if any
+		if err := template.ListTemplates(); err != nil {
+			rootCmd.PrintErrf("%w", err)
+		}
 	},
 }
 
 // Register the logic above with the CLI application
 func init() {
 	rootCmd.AddCommand(listCmd)
-}
-
-/**
- * listTemplates - List all available templates on disk.
- *
- * Parameters:
- * None
- *
- * Returns:
- * None
- */
-func listTemplates() {
-	templates_dir := filepath.Join(xdg.DataHome, "terox")
-	templates, err := os.ReadDir(templates_dir)
-
-	// Throw error and exit execution if the data directory is unreadable
-	if err != nil {
-		rootCmd.PrintErrf(
-			"Failed to read %s directory: %v\n",
-			templates_dir,
-			err,
-		)
-		os.Exit(1)
-	}
-
-	// Print the directory where the templates are located at
-	rootCmd.Printf("Templates directory: %s\n\n", templates_dir)
-
-	// Share conditional message to user if no templates were found
-	if len(templates) == 0 {
-		rootCmd.Printf("Available templates: None\n")
-	} else {
-		rootCmd.Printf("Available templates:\n")
-		for _, template := range templates {
-			if template.IsDir() {
-				rootCmd.Printf("%s\n", template.Name())
-			}
-		}
-	}
 }
