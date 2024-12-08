@@ -22,7 +22,7 @@ Cleanup the downloaded templates from disk.
 var cleanCmd = &cobra.Command{
 	Use:     "clean",
 	Aliases: []string{"gc", "cleanup"},
-	Short:   cleanLongUsage,
+	Short:   cleanShortUsage,
 	Long:    cleanLongUsage,
 	Example: "terox clean\nterox gc\nterox cleanup",
 	Args:    cobra.NoArgs,
