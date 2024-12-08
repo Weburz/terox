@@ -4,6 +4,7 @@ import (
 	"archive/zip"
 	"fmt"
 	"io"
+	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
@@ -63,10 +64,13 @@ func NewTemplate(repo string) (*Template, error) {
  * Returns:
  * A wrapped error if any is raised by the underlying wrapping function.
  */
-func (t *Template) Scaffold() error {
+func (t *Template) Scaffold(repo string) error {
 	// Check if the template already exists locally
 	if _, err := os.Stat(t.Path); os.IsNotExist(err) {
 		fmt.Printf("Template not found locally...downloading\n")
+		if _, err := downloadTemplate(repo); err != nil {
+			return fmt.Errorf("%w", err)
+		}
 		return nil
 	} else if err != nil {
 		return fmt.Errorf("Error checking the template path: %w", err)
@@ -75,6 +79,46 @@ func (t *Template) Scaffold() error {
 	fmt.Printf("Template found locally at: %s\n", t.Path)
 
 	return nil
+}
+
+/**
+ * downloadTemplate - Download the template contents from the GitHub repository.
+ *
+ * Parameters:
+ * repo (string): The GitHub repository's URL to fetch the template from.
+ *
+ * Returns:
+ * A wrapped error if any were raised during the downloading process.
+ */
+func downloadTemplate(repo string) (string, error) {
+	// Create the URL to download the zipball from
+	url := fmt.Sprintf("https://api.github.com/repos/%s/zipball", repo)
+
+	// TODO: Configure the client to make authenticated requests too to fetch
+	// templates from private repositories
+	// Create the client to make a GET request with
+	client := &http.Client{}
+	resp, err := client.Get(url)
+	if err != nil {
+		return "", fmt.Errorf("Failed to download the template to: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return "", fmt.Errorf("Bad server response: %d", resp.StatusCode)
+	}
+
+	tempFile, err := os.CreateTemp("", "terox-*.zip")
+	if err != nil {
+		return "", fmt.Errorf("Failed to create the template zipball: %w", err)
+	}
+	defer tempFile.Close()
+
+	if _, err := io.Copy(tempFile, resp.Body); err != nil {
+		return "", fmt.Errorf("Failed to write the zipball: %w", err)
+	}
+
+	return tempFile.Name(), nil
 }
 
 /**

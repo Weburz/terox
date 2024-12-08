@@ -44,7 +44,7 @@ var scaffoldCmd = &cobra.Command{
 
 		// Attempt to scaffold the project based on the template else throw an
 		// error and exit the execution sequence.
-		if err := t.Scaffold(); err != nil {
+		if err := t.Scaffold(args[0]); err != nil {
 			rootCmd.PrintErrf("Error: %v\n", err)
 		}
 	},
