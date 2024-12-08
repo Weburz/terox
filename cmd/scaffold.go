@@ -34,17 +34,9 @@ var scaffoldCmd = &cobra.Command{
 	Example: generateCmdExample,
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		// Create a new template instance
-		t, err := template.NewTemplate(args[0])
-
-		// Throw an error if any was raised when creating a template instance
-		if err != nil {
-			rootCmd.PrintErrf("Error: %v\n", err)
-		}
-
 		// Attempt to scaffold the project based on the template else throw an
 		// error and exit the execution sequence.
-		if err := t.Scaffold(args[0]); err != nil {
+		if err := template.Scaffold(args[0]); err != nil {
 			rootCmd.PrintErrf("Error: %v\n", err)
 		}
 	},
