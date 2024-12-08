@@ -18,12 +18,10 @@ var templateDir = filepath.Join(xdg.DataHome, "terox")
  * Template - The struct to store the information related to a template.
  *
  * Fields:
- * Repo (string): The GitHub URL to fetch the template repository from.
  * Path (string): The path on the local system where the template will be
  *    downloaded from.
  */
 type Template struct {
-	Name string
 	Path string
 }
 
@@ -52,7 +50,6 @@ func NewTemplate(repo string) (*Template, error) {
 
 	// Return an instance of the "Template" struct (or throw an error, if any)
 	return &Template{
-		Name: name,
 		Path: filepath.Join(templateDir, name),
 	}, nil
 }
@@ -68,14 +65,14 @@ func NewTemplate(repo string) (*Template, error) {
  */
 func (t *Template) Scaffold() error {
 	// Check if the template already exists locally
-	if _, err := os.Stat(t.Name); os.IsNotExist(err) {
+	if _, err := os.Stat(t.Path); os.IsNotExist(err) {
 		fmt.Printf("Template not found locally...downloading\n")
 		return nil
 	} else if err != nil {
 		return fmt.Errorf("Error checking the template path: %w", err)
 	}
 
-	fmt.Printf("Template found locally at: %s\n", t.Name)
+	fmt.Printf("Template found locally at: %s\n", t.Path)
 
 	return nil
 }
@@ -121,7 +118,11 @@ func List() error {
 func Clean() error {
 	// Read the contents of the template directory to check for templates
 	if templates, err := os.ReadDir(templateDir); err != nil {
-		return fmt.Errorf("Failed to find any templates at %s: %w", err)
+		return fmt.Errorf(
+			"Failed to find any templates at %s: %w",
+			templateDir,
+			err,
+		)
 	} else if len(templates) != 0 {
 		fmt.Printf("The following templates were deleted:\n\n")
 		for _, template := range templates {
