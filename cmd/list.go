@@ -13,8 +13,9 @@ import (
 	"github.com/Weburz/terox/internal/template"
 )
 
-var listShortUsage = "List all locally available templates."
-var listLongUsage = `
+var listCmdShortHelp = "List all locally available templates."
+
+var listCmdLongHelp = `
 List all the locally available templates.
 
 This command will list all the available templates on your local system. The
@@ -22,21 +23,19 @@ default directory, Terox will check of available templates is at
 "${XDG_DATA_HOME}/terox" wherein XDG_DATA_HOME is usually set to
 $HOME/.local/share.
 `
+
 var listExample = "terox list\nterox ls\nterox show"
 
 // Logic to handle the "list" command
 var listCmd = &cobra.Command{
 	Use:     "list",
 	Aliases: []string{"ls", "show"},
-	Short:   shortUsage,
+	Short:   listCmdShortHelp,
 	Example: listExample,
-	Long:    listLongUsage,
+	Long:    listCmdLongHelp,
 	Args:    cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		// List all the locally available templates or throw an error if any
-		if err := template.ListTemplates(); err != nil {
-			rootCmd.PrintErrf("%w", err)
-		}
+		template.List()
 	},
 }
 

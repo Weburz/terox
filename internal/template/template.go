@@ -11,6 +11,9 @@ import (
 	"github.com/adrg/xdg"
 )
 
+// The base directory where the templates will be stored locally
+var templateDir = filepath.Join(xdg.DataHome, "terox")
+
 /**
  * Template - The struct to store the information related to a template.
  *
@@ -20,7 +23,8 @@ import (
  *    downloaded from.
  */
 type Template struct {
-	TemplatePath string
+	Name string
+	Path string
 }
 
 /**
@@ -43,14 +47,13 @@ func NewTemplate(repo string) (*Template, error) {
 			fmt.Errorf("Invalid repository format, expected \"<OWNER>/<REPO>\"")
 	}
 
-	// Create a variable to store the absolute path of the template
-	templatePath, _ := filepath.Abs(
-		filepath.Join(xdg.DataHome, "terox", parts[1]),
-	)
+	// Name of the template to store locally
+	name := parts[1]
 
 	// Return an instance of the "Template" struct (or throw an error, if any)
 	return &Template{
-		TemplatePath: templatePath,
+		Name: name,
+		Path: filepath.Join(templateDir, name),
 	}, nil
 }
 
@@ -65,50 +68,42 @@ func NewTemplate(repo string) (*Template, error) {
  */
 func (t *Template) Scaffold() error {
 	// Check if the template already exists locally
-	if _, err := os.Stat(t.TemplatePath); os.IsNotExist(err) {
+	if _, err := os.Stat(t.Name); os.IsNotExist(err) {
 		fmt.Printf("Template not found locally...downloading\n")
 		return nil
 	} else if err != nil {
 		return fmt.Errorf("Error checking the template path: %w", err)
 	}
 
-	fmt.Printf("Template found locally at: %s\n", t.TemplatePath)
+	fmt.Printf("Template found locally at: %s\n", t.Name)
 
 	return nil
 }
 
 /**
- * ListTemplates: List all locally available templates.
+ * List - List all the locally available templates.
  *
  * Parameters:
- *   None
+ * None
  *
  * Returns:
- *   None
+ * A wrapped error if any is raised.
  */
-func ListTemplates() error {
-	// The filepath where the templates are "usually" stored
-	templatesDir := filepath.Join(xdg.DataHome, "terox")
-
-	// Read the contents of the template directory to memory
-	templates, err := os.ReadDir(templatesDir)
-
-	// Throw an error and exit with non-zero code if the directory was not found
-	if err != nil {
-		return fmt.Errorf("Failed to read contents of %s: %s\n", templates, err)
-	}
-
-	// If the templates were found then list them to STDOUT
-	if len(templates) != 0 {
+func List() error {
+	// Check if any template exists locally, if yes, list them to STDOUT
+	if templates, err := os.ReadDir(templateDir); err != nil {
+		return fmt.Errorf(
+			"Failed to read the contents of %s directory: %w",
+			dir,
+			err,
+		)
+	} else if len(templates) != 0 {
 		fmt.Printf("Available Templates:\n")
-
 		for _, template := range templates {
 			if template.IsDir() {
 				fmt.Printf("%s\n", template.Name())
 			}
 		}
-	} else {
-		fmt.Printf("Available Templates: None\n")
 	}
 
 	return nil
