@@ -94,7 +94,7 @@ func List() error {
 	if templates, err := os.ReadDir(templateDir); err != nil {
 		return fmt.Errorf(
 			"Failed to read the contents of %s directory: %w",
-			dir,
+			templateDir,
 			err,
 		)
 	} else if len(templates) != 0 {
