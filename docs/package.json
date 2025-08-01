@@ -15,7 +15,7 @@
     "@astrojs/starlight": "^0.29.3",
     "astro": "^4.16.18",
     "prettier": "^3.6.2",
-    "sharp": "^0.34.1",
+    "sharp": "^0.34.3",
     "typescript": "^5.8.3"
   },
   "prettier": {
