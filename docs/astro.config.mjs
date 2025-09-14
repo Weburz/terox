@@ -2,8 +2,7 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 
 export default defineConfig({
-  site: "https://weburz.github.io/terox",
-  base: "terox",
+  site: "https://terox.weburz.com/",
   integrations: [
     starlight({
       title: "Terox",

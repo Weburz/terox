@@ -76,7 +76,7 @@ configuration files.
 
 The official documentations containing all necessary details about the software
 in general is accessible on the site -
-[tech.weburz.com/terox](https://tech.weburz.com/terox). Locally accessible
+[terox.weburz.com](https://terox.weburz.com). Locally accessible
 documentations should also be accessible to the users through manpages and help
 commands.
 
