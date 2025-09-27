@@ -21,6 +21,16 @@ export default defineConfig({
         twitter: "https://x.com/weburz",
       },
       lastUpdated: true,
+      head: [
+        {
+          tag: "script",
+          attrs: {
+            async: true,
+            src: "https://analytics.weburz.com/script.js",
+            "data-website-id": "166f0328-f723-471b-86ec-48e85f284ed8",
+          },
+        },
+      ],
       sidebar: [
         {
           label: "Introduction",
