@@ -16,7 +16,7 @@
     "astro": "^4.16.19",
     "prettier": "^3.6.2",
     "sharp": "^0.34.4",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   },
   "prettier": {
     "trailingComma": "all",
