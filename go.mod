@@ -4,7 +4,7 @@ go 1.23.0
 
 require (
 	github.com/adrg/xdg v0.5.3
-	github.com/spf13/cobra v1.10.1
+	github.com/spf13/cobra v1.10.2
 )
 
 require (
